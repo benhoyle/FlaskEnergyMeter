@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Graph Energy Monitor Data</title>
+        <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    </head>
+    <body>
+    	<h1>Energy Monitor Graphing</h1>
+		<form method="POST">
+		<div class="input">
+		<table>
+			<tr>
+				<td>
+					<label>
+						Select Variable
+					</label>
+				</td>
+				<td>
+					<select name="variable">
+						<option>Watts</option>
+						<option>Temperature</option>
+			        </select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>
+						Select Units
+					</label>
+				</td>
+				<td>
+					 <select name="units">
+						<option>Minutes</option>
+						<option>Hours</option>
+						<option>Days</option>
+						<option>Weeks</option>
+						<option>Months</option>
+						<option>Years</option>
+			        </select>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Enter Start Date/Time for Range:</label></td>
+				<td><input type="datetime-local" name="startdatetime"></td>
+			</tr>
+			<tr>
+				<td><label>Enter End Date/Time for Range:</label></td>
+				<td><input type="datetime-local" name="enddatetime"></td>
+			</tr>
+        </table>
+        <div class="submit">
+			<input type="submit" value="Plot Graph">
+        </div>
+        </form>
+        </div>
+<!--
+        <div class="output">
+        <figure>
+			<embed type="image/svg+xml" src="energy.svg" />
+		</figure>
+        </div>
+-->
+    </body>
+</html>

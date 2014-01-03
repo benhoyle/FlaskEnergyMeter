@@ -1,0 +1,40 @@
+body {
+    position: relative;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.25em;
+
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    color: #333;
+}
+
+
+select, input[type="submit"], input[type="datetime-local"]
+{
+	font-size: 1.25em;
+	padding: 0.5em;
+	margin: 0.5em;
+	width: 300px;
+}
+
+div.submit {
+	width: 100%;
+	text-align: center;
+}
+
+label {
+  display: block;
+  font-size: 1.5em;
+}
+
+label + label {
+    margin-top: 1em;
+}
+
+td
+{
+  padding-bottom: 1em;
+  padding-left: 1em;
+}
+

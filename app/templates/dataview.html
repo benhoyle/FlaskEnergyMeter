@@ -1,0 +1,56 @@
+{% extends "dashboard.html" %}
+
+{% block title %}Energy Meter Readings{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">Dashboard</h1>
+{#
+<div class="row placeholders">
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		<h4>Label</h4>
+		<span class="text-muted">Something else</span>
+	</div>
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		<h4>Label</h4>
+		<span class="text-muted">Something else</span>
+	</div>
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		<h4>Label</h4>
+		<span class="text-muted">Something else</span>
+	</div>
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		<h4>Label</h4>
+		<span class="text-muted">Something else</span>
+	</div>
+</div>
+#}
+<h2 class="sub-header">Meter Readings</h2>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Timestamp</th>
+				<th>Watts</th>
+				<th>Temp</th>
+		</thead>
+		<tbody>
+			{% for reading in readings.items %}
+			<tr>
+				<td>{{ reading.timestamp }}</td>
+				<td>{{ reading.watt }}</td>
+				<td>{{ reading.temperature }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+<ul class = "pager">
+	{% if readings.has_prev %}<li class = "previous"><a href="{{ url_for('energymeter.index', page=readings.prev_num) }}">&lt;&lt; Newer readings</a>{% else %}<li class = "previous disabled"><a href="">&lt;&lt; Newer readings</a>{% endif %} | 
+	{% if readings.has_next %}<li class = "next"><a href="{{ url_for('energymeter.index', page=readings.next_num) }}">Older readings &gt;&gt;</a>{% else %}<li class = "next disabled"><a href="">Older readings &gt;&gt;</a>{% endif %}
+</ul>
+{% endblock %}

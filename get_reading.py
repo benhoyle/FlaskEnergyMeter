@@ -8,6 +8,9 @@ import time
 from app import db
 from app.energymeter.models import Reading
 
+# Import configuration settings
+from config import SAMPLING_FREQ
+
 def main():
 	
 	port 		=	'/dev/ttyUSB0'
@@ -19,6 +22,7 @@ def main():
 			meter		=	serial.Serial(port, baud, timeout=timeout)
 			data		=	meter.readline()
 			meter.close()
+			
 		except SerialException:
 			print "Could not access device. Trying again in 30s. \n"
 			# Try again  in 30s
@@ -46,8 +50,10 @@ def main():
 				db.session.add(reading)
 				db.session.commit()
 			
+			# Calculate sleep time - seconds in hour / freq in readings per hour
+			sleep_time = int((60*60.0)/SAMPLING_FREQ)
 			# Sleep for 2 minutes
-			time.sleep(120)
+			time.sleep(sleep_time)
 	
 if __name__ == "__main__":
 	main()

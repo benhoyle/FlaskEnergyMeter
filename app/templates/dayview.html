@@ -1,0 +1,44 @@
+{% extends "dashboard.html" %}
+
+{% block title %}Energy Meter - Daily Electricity Usage{% endblock %}
+
+{% block content %}
+
+<h1 class="page-header">Days</h1>
+{% for day in days %}
+{# Start a new row every xth day #}
+{% set cols_per_row = 3 %}
+{% set col_width = (12//cols_per_row) %}
+{% if (loop.index is divisibleby (cols_per_row+1)) or (loop.first) %}
+<div class="row">
+{% endif %}
+
+<div class="col-sm-{{col_width}}">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="text-center">{{ day.date }}</h4>
+		</div>
+		<table class="table">
+			<tr>
+				<td>Units Used:</td>
+				<td><h5 class="text-center">{{ day.units_used|round(2, 'ceil') }} kwh</h5></td>
+			</tr>
+			<tr>
+				<td>Cost of Units:</td>
+				<td><h5 class="text-center">£{{ day.cost_units|round(2, 'ceil') }}</h5></td>
+			</tr>
+			<tr>
+				<td>Cost (inc. standing):</td>
+				<td><h5 class="text-center">£{{ day.cost_total|round(2, 'ceil') }}</h5></p></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+{% if ((loop.index+1) is divisibleby (cols_per_row+1)) or (loop.last) %}
+</div>
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

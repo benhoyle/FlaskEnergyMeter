@@ -12,7 +12,7 @@ from app import db
 #from app.energymeter.forms import 
 
 # Import module models
-from app.energymeter.models import Reading
+from app.energymeter.models import Reading, Day
 
 # Define the blueprint: 'energymeter'
 energymeter = Blueprint('energymeter', __name__)
@@ -26,3 +26,9 @@ from config import RECORDS_PER_PAGE
 def index(page=1):
 	readings = Reading.query.order_by(Reading.timestamp.desc()).paginate(page, RECORDS_PER_PAGE, False)
 	return render_template('dataview.html', readings=readings)
+	
+@energymeter.route('/day', methods=['GET'])
+def showdaydata():
+	days = Day.query.order_by(Day.date.desc())
+	
+	return render_template('dayview.html', days=days)

@@ -29,6 +29,7 @@ def index(page=1):
 	
 @energymeter.route('/day', methods=['GET'])
 def showdaydata():
+	Day.generate_all()
 	days = Day.query.order_by(Day.date.desc())
 	
 	return render_template('dayview.html', days=days)

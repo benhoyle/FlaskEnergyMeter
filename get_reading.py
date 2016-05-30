@@ -8,6 +8,8 @@ import time
 from app import db
 from app.energymeter.models import Reading
 
+import sys
+
 # Import configuration settings
 from config import SAMPLING_FREQ
 
@@ -23,9 +25,8 @@ def main():
 			data		=	meter.readline()
 			meter.close()
 			
-		except SerialException:
-			print "Could not access device. Trying again in 30s. \n"
-			# Try again  in 30s
+		except:
+			print "Other error \n", sys.exc_info()[0]
 			time.sleep(30)
 			
 		else:
